@@ -1,3 +1,10 @@
 
 [context.production.environment]
   HUGO_VERSION = "0.74.3"
+
+[build.processing.css]
+  bundle = false
+  minify = false
+[build.processing.js]
+  bundle = false
+  minify = false
