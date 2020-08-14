@@ -136,17 +136,19 @@ uglyURLs = false
     mediaType = "application/rss+xml"
     baseName = "rss"
 
+# Search index for lunr.js
+[outputFormats.SearchIndex]
+    mediaType = "application/json"
+    baseName = "search"
+
 # Hugo’s output control
 [outputs]
     page = ["HTML"]
-    home = ["HTML", "SectionsAtom", "SectionsRSS"]
+    home = ["HTML", "SectionsAtom", "SectionsRSS", "SearchIndex"]
     section = ["HTML"]
-    # Taxonomy
-    taxonomyTerm = ["HTML"]
-    # Taxonomy term
     taxonomy = ["HTML"]
-    # Note: https://github.com/gohugoio/hugo/issues/4528#issuecomment-508488859
-
+    term = ["HTML"]
+ 
 # Maximum number of items in the Atom & RSS feed
 [services.rss]
     limit = -1
@@ -182,10 +184,10 @@ uglyURLs = false
 #               is left empty("") or does
 #               not exist)
 # identifier    Icon’s class name
-#               (there are two speacial
+#               (there are three special
 #               values for header layout
 #               flex: `theme-switcher`,
-#               `lang-switcher`)
+#               `lang-switcher`, `search`)
 
 [menu]
     ## Menu bar
@@ -245,15 +247,6 @@ uglyURLs = false
 
     headerLayout = "flex"
     # Note: center or flex
-
-    headerFallbackWidth = "32em"
-    # Note: by default, MemE uses main-inner’s
-    #       width for `headerWidth`, but in
-    #       some pages (e.g. homepage layout
-    #       poetry, footage), there is no
-    #       main-inner, so you need to give
-    #       a fallback value for this
-    #       situation.
 
     # Hide menu bar and display a toggle
     # on narrow screen?
@@ -407,6 +400,11 @@ uglyURLs = false
     # category?
     displayPostsCount = true
 
+   # Set to a non-negative number to limit
+    # the number of posts displayed per
+    # category/section.
+    limitPostsLimit = -1
+
 
     ######################################
     # Tags Page
@@ -421,7 +419,7 @@ uglyURLs = false
     ######################################
     # List Page
 
-    listWidth = 30
+    listWidth = 36
     # Note: you can leave it empty("") to
     #       fallback to the default value: 42
     #       Unit: em
@@ -462,6 +460,11 @@ uglyURLs = false
     # Display count of posts in each
     # taxonomy term?
     displayTaxonomyTermCount = true
+
+    # Set to a non-negative number to limit
+    # the number of posts displayed per
+    # taxonomy term.
+    limitEntriesLimit = -1
 
 
     ######################################
@@ -522,7 +525,11 @@ uglyURLs = false
     #       default theme, your readers
     #       may still read your blog in
     #       light mode, even if you have
-    #       hidden the theme toggle.
+    #       hidden the theme toggle.  
+    #       Unless you enable the following
+    #       option.
+
+    overrideSystemPreferences = false
 
 
     ######################################
@@ -581,9 +588,7 @@ uglyURLs = false
     #       environment
 
     enableServiceWorker = false
-    # Note: need third-party support, see
-    #       https://io-oi.me/tech/pwa-via-workbox/
-
+   
 
     ######################################
     # KaTeX (chemical equation supported)
@@ -612,6 +617,9 @@ uglyURLs = false
     # Note: *global settings*
     #       `mermaid` in post’s Front Matter
     #       has a higher priority than here
+
+    mermaidTheme = 'default'
+    mermaidThemeDark = 'dark'
 
 
     ######################################
@@ -709,7 +717,7 @@ uglyURLs = false
     #            supported
 
     # The content width of the post
-    postWidth = 32
+    postWidth = 36
     # Note: you can leave it empty("") to
     #       fallback to the default value: 42
     #       Unit: em
@@ -1188,6 +1196,8 @@ uglyURLs = false
 
     enableFooter = true
 
+    displayFooter = true
+
     displayFooterInHome = true
 
     displayCopyrightSymbol = true
@@ -1219,6 +1229,10 @@ uglyURLs = false
     #       Leave it empty("") if you
     #       don’t need the text or icon
     #       https://busuanzi.ibruce.info/
+
+    # Socials
+    enableSocials = true
+    # Note: see data/Socials.toml
 
 
     ######################################
@@ -1272,7 +1286,6 @@ uglyURLs = false
     # Smooth Scroll
 
     enableSmoothScroll = true
-    # Note: https://github.com/cferdinandi/smooth-scroll
 
 
     ######################################
@@ -1287,6 +1300,16 @@ uglyURLs = false
 
     enableInstantPage = true
     # Note: https://github.com/instantpage/instant.page
+
+
+    ######################################
+    # Lunr search
+
+    # Note: This requires SearchIndex
+    # output to be enabled.
+
+    enableLunrSearch = true
+    # Note: https://lunrjs.com/
 
 
     ######################################
