@@ -16,3 +16,5 @@ collections:
       - {label: "Tags", name: "tags", widget: "list"}
       - {label: "Categories", name: "categories", widget: "list"}
       - {label: "Body", name: "body", widget: "markdown"}
+site_url: https://learn2code.dev
+display_url: https://learn2code.dev
